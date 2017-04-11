@@ -13,6 +13,11 @@
       </div>
     </transition>
     <router-view></router-view>
+    <transition name="backTop">
+      <div class="scrollImg" v-on:click="scrollTop" v-if="backTop">
+        <img :src="scrollImg" alt="=。=貌似网络不好">
+      </div>
+    </transition>
     <ONJ></ONJ>
   </div>
 </template>
@@ -25,7 +30,9 @@ export default {
   data () {
     return {
       navShow: true,
-      scrollY: ''
+      scrollY: '',
+      scrollImg: 'static/scroll.png',
+      backTop: false
     }
   },
   components: {
@@ -39,7 +46,20 @@ export default {
       } else {
         this.navShow = false
       }
+      if (window.scrollY > window.innerHeight) {
+        this.backTop = true
+      } else {
+        this.backTop = false
+      }
+
       this.scrollY = window.scrollY
+    },
+    scrollTop () {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(this.scrollTop)
+        window.scrollTo(0, currentScroll - (currentScroll / 5))
+      }
     }
   },
   created () {
@@ -74,4 +94,24 @@ export default {
   .fade-leave-active {
     opacity: 0
   }
+
+  .scrollImg {
+    position: fixed;
+    right: 40px;
+    top: 0;
+    margin-top: -230px;
+  }
+
+  .backTop-enter-active {
+    transition:all .3s ease;
+  }
+
+  .backTop-enter,.backTop-leave-active {
+    transform: translateY(-700px);
+  }
+
+  .backTop-leave-active {
+    transition: all .8s ease;
+  }
+
 </style>

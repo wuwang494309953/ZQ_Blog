@@ -1,5 +1,11 @@
 <template>
     <div class="item-main row">
+    <div class="item-month-father">
+      <span class="item-month">
+      <span>3月</span>
+      <span>03</span>
+    </span>
+    </div>
       <div class="item-head">
         <p class="item-title-p col-md-11">
           <a href="#" class="item-title">{{title}}</a>
@@ -9,6 +15,9 @@
           <span class="glyphicon glyphicon-eye-open"></span> {{numEyes}} •
           <span class="glyphicon glyphicon-comment"></span> {{numComment}}
         </p>
+        <div class="col-md-2 item-type">
+          <a href="#" class="item-a">蕾姆酱</a>
+        </div>
       </div>
       <div class="item-body col-md-12">
         <div v-for="item in datas">
@@ -88,6 +97,67 @@
         border-radius: 4px;
         padding: 5px 10px;
         font-size: 12px;
+    }
+
+    .item-month-father {
+      position: relative;
+      width: 0px;
+      height: 0px;
+    }
+
+    .item-month {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background-color: #97dffd;
+        border-radius: 100%;
+        top: -25px;
+        left: -25px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14);
+    }
+
+    .item-month span:nth-child(1) {
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 17px;
+        margin-top: 5px;
+        height: 14px;
+    }
+
+    .item-month span:nth-child(2) {
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .item-type {
+        background-color: #97dffd;
+        border-radius:0px 5px 5px 0px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14);
+        height: 30px;
+        line-height: 30px;
+        margin-left: -25px;
+        width: 100px;
+    }
+
+    .item-type:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0px;
+        border-width: 10px;
+        border-style:solid;
+        border-color:#473C8B #473C8B transparent transparent;
+        z-index: -1;
+    }
+
+    .item-a {
+        float: right;
+        margin-right: 5px;
+        color: white;
     }
 
     a:hover { text-decoration:none }
